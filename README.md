@@ -1,6 +1,8 @@
 # Description
 
-WhyHow API (backend)
+Welcome to the WhyHow Knowledge Graph Studio! This platform makes it easy to create and manage RAG-native knowledge graphs and offers features like rule-based entity resolution, modular graph construction, flexible data ingestion, and an API-first design with a supporting [SDK](https://pypi.org/project/whyhow/). Whether you’re working with structured or unstructured data, building exploratory graphs or highly schema-constrained graphs, this platform is built for scalability and flexibility, enabling you to build dynamic graph-enabled AI workflows, ideal for both experimentation and large-scale use.
+
+This platform is built on top of a NoSQL database. NoSQL data stores like MongoDB are a powerful choice for building knowledge graphs, offering a flexible, scalable storage layer that enable fast data retrieval, easy traversal of complex relationships, and a familiar interface for developers.
 
 # Installation
 
