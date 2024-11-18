@@ -1,0 +1,891 @@
+[
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f810"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Tim Cook",
+    "type": "person",
+    "properties": {
+      "CEO Age": "60",
+      "CEO Length with Business": "23"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764dee4"
+      },
+      {
+        "$oid": "668dc8903c41aca7552bb592"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f811"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Apple",
+    "type": "company",
+    "properties": {
+      "Location": "Cupertino, CA",
+      "Number of Employees": "147000"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764dee4"
+      },
+      {
+        "$oid": "668dc8903c41aca7552bb592"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f812"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Satya Nadella",
+    "type": "person",
+    "properties": {
+      "CEO Age": "54",
+      "CEO Length with Business": "29"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764dee5"
+      },
+      {
+        "$oid": "668dc8903c41aca7552bb592"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f813"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Microsoft",
+    "type": "company",
+    "properties": {
+      "Location": "Redmond, WA",
+      "Number of Employees": "181000"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764dee5"
+      },
+      {
+        "$oid": "668dc8903c41aca7552bb592"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f814"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Andy Jassy",
+    "type": "person",
+    "properties": {
+      "CEO Age": "54",
+      "CEO Length with Business": "24"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764dee6"
+      },
+      {
+        "$oid": "668dc8903c41aca7552bb592"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f815"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Amazon",
+    "type": "company",
+    "properties": {
+      "Location": "Seattle, WA",
+      "Number of Employees": "1600000"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764dee6"
+      },
+      {
+        "$oid": "668dc8903c41aca7552bb592"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f816"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Sundar Pichai",
+    "type": "person",
+    "properties": {
+      "CEO Age": "49",
+      "CEO Length with Business": "17"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764dee7"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f817"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Alphabet (Google)",
+    "type": "company",
+    "properties": {
+      "Location": "Mountain View, CA",
+      "Number of Employees": "156500"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764dee7"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f818"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Mark Zuckerberg",
+    "type": "person",
+    "properties": {
+      "CEO Age": "39",
+      "CEO Length with Business": "20"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764dee8"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f819"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Meta (Facebook)",
+    "type": "company",
+    "properties": {
+      "Location": "Menlo Park, CA",
+      "Number of Employees": "87000"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764dee8"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f81a"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Elon Musk",
+    "type": "person",
+    "properties": {
+      "CEO Age": "52",
+      "CEO Length with Business": "20"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764dee9"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f81b"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Tesla",
+    "type": "company",
+    "properties": {
+      "Location": "Palo Alto, CA",
+      "Number of Employees": "99290"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764dee9"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f81c"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Jensen Huang",
+    "type": "person",
+    "properties": {
+      "CEO Age": "60",
+      "CEO Length with Business": "31"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764deea"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f81d"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Nvidia",
+    "type": "company",
+    "properties": {
+      "Location": "Santa Clara, CA",
+      "Number of Employees": "22000"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764deea"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f81e"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.110Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Jamie Dimon",
+    "type": "person",
+    "properties": {
+      "CEO Age": "67",
+      "CEO Length with Business": "18"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764deeb"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f81f"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "JPMorgan Chase",
+    "type": "company",
+    "properties": {
+      "Location": "New York, NY",
+      "Number of Employees": "255351"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764deeb"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f820"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Jack Dorsey",
+    "type": "person",
+    "properties": {
+      "CEO Age": "46",
+      "CEO Length with Business": "12"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764deec"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f821"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Square",
+    "type": "company",
+    "properties": {
+      "Location": "San Francisco, CA",
+      "Number of Employees": "5700"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      },
+      {
+        "$oid": "66939ec86effa38ea764deec"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f822"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Albert Bourla",
+    "type": "person",
+    "properties": {
+      "CEO Age": "61",
+      "CEO Length with Business": "26"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764deed"
+      },
+      {
+        "$oid": "668dc8903c41aca7552bb594"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f823"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Pfizer",
+    "type": "company",
+    "properties": {
+      "Location": "New York, NY",
+      "Number of Employees": "79000"
+    },
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "66939ec86effa38ea764deed"
+      },
+      {
+        "$oid": "668dc8903c41aca7552bb594"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f824"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "technology",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb592"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f825"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "e-commerce",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb592"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f826"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "cloud computing",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb592"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f827"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "healthcare",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb594"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f828"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "Meta",
+    "type": "company",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f829"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "social media",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f82a"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "electric vehicles",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f82b"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "renewable energy",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f82c"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "graphics processing",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f82d"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "AI technologies",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "669751ab49245c927eb3f82e"
+    },
+    "created_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "updated_at": {
+      "$date": "2024-07-17T05:07:55.111Z"
+    },
+    "created_by": {
+      "$oid": "668ceb050c8b866d3624ad0a"
+    },
+    "name": "financial services",
+    "type": "service",
+    "properties": {},
+    "graph": {
+      "$oid": "669751a849245c927eb3f80e"
+    },
+    "chunks": [
+      {
+        "$oid": "668dc8903c41aca7552bb593"
+      }
+    ]
+  }
+]

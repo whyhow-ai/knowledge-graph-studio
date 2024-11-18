@@ -1,0 +1,91 @@
+{
+  "name": "companies (demo)",
+  "entities": [
+    {
+      "name": "person",
+      "description": "An individual who plays a pivotal role in leading an organization.",
+      "fields": [
+        {
+          "name": "CEO",
+          "properties": ["CEO Age", "CEO Length with Business"]
+        }
+      ]
+    },
+    {
+      "name": "company",
+      "description": "An organizational entity that engages in commercial, industrial, or professional activities.",
+      "fields": [
+        {
+          "name": "Company",
+          "properties": ["Location", "Number of Employees"]
+        }
+      ]
+    },
+    {
+      "name": "service",
+      "description": "A function or domain of activity within which organizations operate.",
+      "fields": []
+    }
+  ],
+  "relations": [
+    {
+      "name": "runs",
+      "description": "A relationship where an individual leads or manages an organization."
+    },
+    {
+      "name": "has service",
+      "description": "A relationship indicating that an organization offers or operates within a specific domain or function."
+    }
+  ],
+  "patterns": [
+    {
+      "head": {
+        "name": "company",
+        "description": "An organizational entity that engages in commercial, industrial, or professional activities.",
+        "fields": [
+          {
+            "name": "Company",
+            "properties": ["Location", "Number of Employees"]
+          }
+        ]
+      },
+      "relation": {
+        "name": "has service",
+        "description": "A relationship indicating that an organization offers or operates within a specific domain or function."
+      },
+      "tail": {
+        "name": "service",
+        "description": "A function or domain of activity within which organizations operate.",
+        "fields": []
+      },
+      "description": "Indicates that a company is engaged in a particular function or domain of activity."
+    },
+    {
+      "head": {
+        "name": "person",
+        "description": "An individual who plays a pivotal role in leading an organization.",
+        "fields": [
+          {
+            "name": "CEO",
+            "properties": ["CEO Age", "CEO Length with Business"]
+          }
+        ]
+      },
+      "relation": {
+        "name": "runs",
+        "description": "A relationship where an individual leads or manages an organization."
+      },
+      "tail": {
+        "name": "company",
+        "description": "An organizational entity that engages in commercial, industrial, or professional activities.",
+        "fields": [
+          {
+            "name": "Company",
+            "properties": ["Location", "Number of Employees"]
+          }
+        ]
+      },
+      "description": "Indicates that a person holds a leadership or managerial role within a company."
+    }
+  ]
+}

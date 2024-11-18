@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <title>WhyHow Graph Visualisation</title>
+    <style>
+      /* CSS styles */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+        /* Light grey background */
+      }
+
+      #graph {
+        width: 80vw;
+        height: 80vh;
+        border: 1px solid #e0e0e0;
+        /* Light grey border */
+        background-color: #fff;
+        /* White background */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        /* subtle shadow similar to Paper */
+        padding: 20px;
+        /* Padding around content */
+        overflow: hidden;
+        /* Prevents any overflows */
+        border-radius: 1rem;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="graph">
+      <script src="https://d3js.org/d3.v6.min.js"></script>
+      <script>
+        // Set up SVG and graph parameters
+        const width = document.getElementById("graph").clientWidth;
+        const height = document.getElementById("graph").clientHeight;
+
+        const svg = d3
+          .select("#graph")
+          .append("svg")
+          .attr("width", "100%")
+          .attr("height", "100%")
+          .call(
+            d3.zoom().on("zoom", function (event) {
+              svg.attr("transform", event.transform);
+            })
+          )
+          .append("g");
+
+          const nodes = {{ nodes | tojson }};
+          const links = {{ links | tojson }};
+
+        // Initialize force simulation
+        const simulation = d3
+          .forceSimulation(nodes)
+          .force(
+            "link",
+            d3.forceLink(links).id((d) => d.id)
+          )
+          .force("charge", d3.forceManyBody().strength(-1000)) // Increase strength to spread out nodes
+          .force("center", d3.forceCenter(width / 2, height / 2));
+
+        const link = svg
+          .append("g")
+          .attr("stroke", "#999")
+          .attr("stroke-opacity", 0.6)
+          .selectAll("line")
+          .data(links)
+          .join("line")
+          .attr("stroke-width", 2)
+          .attr("marker-end", "url(#arrow)"); // Add arrowheads
+
+        const node = svg
+          .append("g")
+          .attr("stroke", "#fff")
+          .attr("stroke-width", 1.5)
+          .selectAll("circle")
+          .data(nodes)
+          .join("circle")
+          .attr("r", (d) => d.value) // Node size based on "value"
+          .attr("fill", (d) => d.color) // Node color based on "color"
+          .call(
+            d3
+              .drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended)
+          );
+
+        const labels = svg
+          .append("g")
+          .attr("class", "labels")
+          .selectAll("text")
+          .data(nodes)
+          .join("text")
+          .text((d) => d.name)
+          .attr("x", (d) => d.x)
+          .attr("y", (d) => d.y);
+
+        svg
+          .append("defs")
+          .append("marker")
+          .attr("id", "arrow")
+          .attr("viewBox", "0 -5 10 10")
+          .attr("refX", 25)
+          .attr("refY", 0)
+          .attr("markerWidth", 6)
+          .attr("markerHeight", 6)
+          .attr("orient", "auto")
+          .append("path")
+          .attr("fill", "#999")
+          .attr("d", "M0,-5L10,0L0,5");
+
+        simulation.on("tick", () => {
+          link
+            .attr("x1", (d) => d.source.x)
+            .attr("y1", (d) => d.source.y)
+            .attr("x2", (d) => d.target.x)
+            .attr("y2", (d) => d.target.y);
+
+          node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+
+          labels.attr("x", (d) => d.x + 5).attr("y", (d) => d.y + 5);
+        });
+
+        function dragstarted(event, d) {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x;
+          d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+          d.fx = event.x;
+          d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+          if (!event.active) simulation.alphaTarget(0);
+          d.fx = null;
+          d.fy = null;
+        }
+      </script>
+    </div>
+  </body>
+</html>

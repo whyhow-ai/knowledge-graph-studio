@@ -1,0 +1,138 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "whyhow-api"
+authors = [{name = "Foo Bar"}]
+description = "SDK"
+keywords = ["SDK"]
+classifiers = ["Programming Language :: Python :: 3"]
+requires-python = ">=3.10"
+dependencies = [
+    "asgi_correlation_id",
+    "fastapi==0.110.3",
+    "spacy",
+    "pydantic",
+    "pydantic-settings",
+    "uvicorn",
+    "neo4j",
+    "langchain", 
+    "langchain_community", 
+    "langchain_openai", 
+    "logfire[fastapi, pymongo, system-metrics]",
+    "pypdf",
+    "pinecone-client",
+    "IPython",
+    "python-multipart",
+    "boto3",
+    "datetime",
+    "uuid",
+    "pypdf2",
+    "motor<=3.4.0",
+    "pymongo<=4.8.0",
+    "typer",
+    "types-requests",
+    "pyjwt[crypto]",
+    "Pytest-mock",
+    "tiktoken==0.7.0",
+    "auth0-python==4.7.1",
+    "pandas"
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "bandit[toml]",
+    "black",
+    "flake8",
+    "flake8-docstrings",
+    "isort",
+    "mypy",
+    "pydocstyle[toml]",
+    "pytest-asyncio",
+    "pytest-cov",
+    "pytest-httpx",
+    "pytest",
+    "pytest-html",
+]
+docs = [
+    "mkdocs",
+    "mkdocstrings[python]",
+    "mkdocs-material",
+    "pymdown-extensions",
+]
+
+[project.scripts]
+whyhow-locate = "whyhow_api.main:locate"
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.rst", "*.typed", "*.html", "*.json"]
+"whyhow_api" = ["static/**/*", "data/*.json"]
+
+[tool.setuptools.dynamic]
+version = {attr = "whyhow_api.__version__"}
+
+[tool.pydocstyle]
+convention = "numpy"
+add-ignore = "D301"
+
+[tool.bandit]
+
+[tool.black]
+line-length = 79
+preview = true
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.mypy]
+plugins = [
+  "pydantic.mypy"
+]
+python_version = "3.10"
+ignore_missing_imports = true
+no_implicit_optional = true
+check_untyped_defs = true
+strict_equality = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "error",
+    "ignore:There is no current event loop",
+    "ignore:The 'app' shortcut is now deprecated.:DeprecationWarning",
+    "ignore:Using extra keyword arguments on `Field` is deprecated and will be removed:pydantic.warnings.PydanticDeprecatedSince20",
+    "ignore:Support for class-based `config` is deprecated, use ConfigDict instead.:pydantic.warnings.PydanticDeprecatedSince20",
+    "ignore:Exception ignored .* MemoryObjectReceiveStream.__del__:pytest.PytestUnraisableExceptionWarning",
+    "ignore:Unclosed .*:ResourceWarning",
+    "ignore:Pydantic serializer warnings:UserWarning"
+]
+testpaths = [
+    "tests/unit",
+]
+addopts = "--cov=src/ -v --cov-report=term-missing --durations=20"
+log_cli = false
+
+[tool.logfire]
+pydantic_plugin_record = "all"
