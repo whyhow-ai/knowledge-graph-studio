@@ -14,7 +14,10 @@ Check out our case studies and articles on the [WhyHow Blog](https://medium.com/
 
 
 **Demo**
-![demo](https://github.com/user-attachments/assets/57ecd4dd-6044-485c-ab9b-0582171f6b7f)
+
+https://github.com/user-attachments/assets/8e98626d-c531-4d6a-a9bd-c1c7ef16667a
+
+
 
 *Check out the graph [here](https://app.whyhow.ai/public/graph/673ba7d0aa25224ee88c2406). We built this demo using an [Amazon 10k](https://d18rn0p25nwr6d.cloudfront.net/CIK-0001018724/c7c14359-36fa-40c3-b3ca-5bf7f3fa0b96.pdf).*
 
