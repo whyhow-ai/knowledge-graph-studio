@@ -4,6 +4,8 @@ Welcome to the WhyHow Knowledge Graph Studio! This platform makes it easy to cre
 
 This platform is built on top of a NoSQL database. NoSQL data stores like MongoDB are a powerful choice for building knowledge graphs, offering a flexible, scalable storage layer that enable fast data retrieval, easy traversal of complex relationships, and a familiar interface for developers.
 
+We are aiming to be database agnostic and also working with a number of other partners to bring similar capabilities to other relational and graph databases.
+
 # Installation
 
 To install the package you can first clone the repo
