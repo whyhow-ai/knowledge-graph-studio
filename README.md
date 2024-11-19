@@ -29,7 +29,7 @@ To install the package you can first clone the repo
 _This client requires Python version 3.10 or higher._
 
 ```shell
-$ git clone git@github.com:whyhow-ai/kg-engine.git
+$ git clone git@github.com:whyhow-ai/knowledge-graph-studio.git
 $ cd kg-engine
 $ pip install .
 ```
