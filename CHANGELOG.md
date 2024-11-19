@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v0.3.45]
 
+### Changed
+
+- Updated demo video
+- Added screenshots + links
+
 ### Added
 
 - Updated license to MIT
