@@ -6,6 +6,13 @@ This platform is built on top of a NoSQL database. NoSQL data stores like MongoD
 
 We are aiming to be database agnostic and also working with a number of other partners to bring similar capabilities to other relational and graph databases.
 
+Check out our case studies and articles on the [WhyHow Blog](https://medium.com/enterprise-rag). (Here's a link to the [open sourcing announcement](https://medium.com/enterprise-rag/open-sourcing-the-whyhow-knowledge-graph-studio-powered-by-nosql-edce283fb341).)
+
+![demo](https://github.com/user-attachments/assets/57ecd4dd-6044-485c-ab9b-0582171f6b7f)
+
+*Check out the graph [here](https://app.whyhow.ai/public/graph/673ba7d0aa25224ee88c2406). We biult this demo using an [Amazon 10k](https://d18rn0p25nwr6d.cloudfront.net/CIK-0001018724/c7c14359-36fa-40c3-b3ca-5bf7f3fa0b96.pdf).*
+
+
 # Installation
 
 To install the package you can first clone the repo
