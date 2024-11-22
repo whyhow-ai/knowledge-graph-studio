@@ -212,7 +212,7 @@ class TestGetUser:
                 request=mock_request,
                 api_key=None,
                 # token=None,
-                db=db_mock
+                db=db_mock,
             )
 
         # Check that the appropriate HTTPException is raised

@@ -1,7 +1,7 @@
 import logging
 import uuid
 from time import sleep
-from unittest.mock import AsyncMock, Mock, patch
+from unittest.mock import AsyncMock, Mock  # patch
 
 import jwt
 import pytest
