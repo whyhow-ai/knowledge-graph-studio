@@ -107,6 +107,67 @@ $ uvicorn $(whyhow-locate)
 
 You can then navigate to `http://localhost:8000/docs` to see the Swagger UI.
 
+### Test Locally
+
+**Install Python SDK**
+
+```shell
+$ pip install whyhow
+```
+
+**Configure and run**
+
+```shell
+from whyhow import WhyHow, Triple, Node, Chunk, Relation
+
+# Configure WhyHow client
+client = WhyHow(api_key=os.getenv('<your whyhow api key>'), base_url="http://localhost:8000")
+
+# Create workspace
+workspace = client.workspaces.create(name="Demo Workspace")
+
+# Create chunk(s)
+chunk = client.chunks.create(
+    workspace_id=workspace.workspace_id,
+    chunks=[Chunk(
+        content="preneur and visionary, Sam Altman serves as the CEO of OpenAI, leading advancements in artifici"
+    )]
+)
+
+# Create triple(s)
+triples = [
+    Triple(
+        head=Node(
+            name="Sam Altman",
+            label="Person",
+            properties={"title": "CEO"}
+        ),
+        relation=Relation(
+            name="runs",
+        ),
+        tail=Node(
+            name="OpenAI",
+            label="Business",
+            properties={"market cap": "$157 Billion"}
+        ),
+        chunk_ids=[c.chunk_id for c in chunk]
+    )
+]
+
+# Create graph
+graph = client.graphs.create_graph_from_triples(
+    name="Demo Graph",
+    workspace_id=workspace.workspace_id,
+    triples=triples
+)
+
+# Query graph
+query = client.graphs.query_unstructured(
+    graph_id=graph.graph_id,
+    query="Who runs OpenAI?"
+)
+```
+
 # Docker
 
 You can also run the server using Docker.
