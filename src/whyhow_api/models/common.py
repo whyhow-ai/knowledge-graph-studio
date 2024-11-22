@@ -310,7 +310,7 @@ class TextWithEntities(BaseModel):
             "The original text that was analyzed to identify entities. This"
             " text contains one or more entities that have been classified and"
             " extracted."
-        )
+        ),
     )
     entities: List[Entity] = Field(
         ...,
@@ -318,5 +318,5 @@ class TextWithEntities(BaseModel):
             "A list of entities extracted from the original text. Each entity"
             " is represented as a combination of the entity's surface form and"
             " its classification label."
-        )
+        ),
     )

@@ -1,10 +1,11 @@
+"""Admin CLI for managing users and the database."""
+
 import asyncio
 import json
 import secrets
 import string
-
-from typing import Optional, Type
 from types import TracebackType
+from typing import Optional, Type
 
 import typer
 from motor.motor_asyncio import AsyncIOMotorDatabase
@@ -38,7 +39,12 @@ class MongoDBConnection:
         )  # Ensure 'main' database is selected
         return self.db
 
-    def __exit__(self, exc_type: Optional[Type[BaseException]], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> None:
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_val: Optional[BaseException],
+        exc_tb: Optional[TracebackType],
+    ) -> None:
         """Close the MongoDB connection."""
         close_mongo_connection()
 
@@ -49,7 +55,9 @@ def generate_api_key(length: int = 40) -> str:
     return "".join(secrets.choice(characters) for _ in range(length))
 
 
-async def setup_collections_and_indexes(db: AsyncIOMotorDatabase, config_file: str) -> None:
+async def setup_collections_and_indexes(
+    db: AsyncIOMotorDatabase, config_file: str
+) -> None:
     """Set up collections and indexes from a configuration file."""
     with open(config_file, "r") as file:
         config = json.load(file)
@@ -98,7 +106,9 @@ async def setup_collections_and_indexes(db: AsyncIOMotorDatabase, config_file: s
                 )
 
 
-async def create_user_in_db(db: AsyncIOMotorDatabase, email: str, openai_key: str) -> None:
+async def create_user_in_db(
+    db: AsyncIOMotorDatabase, email: str, openai_key: str
+) -> None:
     """Add a user with an API key to the database."""
     api_key = generate_api_key()
     user = {
