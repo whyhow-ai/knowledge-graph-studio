@@ -8,7 +8,7 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from whyhow_api.config import Settings, SettingsAPI, SettingsAuth0
+from whyhow_api.config import Settings, SettingsAPI  # SettingsAuth0
 from whyhow_api.dependencies import get_db, get_settings
 from whyhow_api.middleware import RateLimiter
 
@@ -123,11 +123,11 @@ def test_lifespan(client, monkeypatch, log_level, caplog):
     client.app.dependency_overrides[get_settings] = lambda: Settings(
         dev={"log_level": log_level},
         mongodb={"username": "test", "password": "test", "host": "test"},
-        api={
-            "auth0": {
-                "domain": "test",
-            }
-        },
+        # api={
+        #     "auth0": {
+        #         "domain": "test",
+        #     }
+        # },
     )
 
     fake_connect_to_mongo = Mock()
@@ -173,11 +173,11 @@ test_settings = Settings(
         limit_frequency_value=1,  # tokens added per second
         bucket_capacity=1,  # max tokens in bucket
         excluded_paths=["/"],
-        auth0=SettingsAuth0(
-            domain="test-domain",
-            audience="test-audience",
-            algorithm="test-algorithm",
-        ),
+        # auth0=SettingsAuth0(
+        #     domain="test-domain",
+        #     audience="test-audience",
+        #     algorithm="test-algorithm",
+        # ),
     ),
 )
 

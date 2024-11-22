@@ -4,14 +4,17 @@ import logging
 from functools import cache
 from typing import Any, AsyncGenerator, Dict, List
 
-import jwt
-import requests
-from auth0.authentication import GetToken
-from auth0.management import Auth0
+###########################
+# Auth0 used for UI #######
+###########################
+# import jwt
+# import requests
+# from auth0.authentication import GetToken
+# from auth0.management import Auth0
 from bson import ObjectId
 from bson.errors import InvalidId
 from fastapi import Depends, HTTPException, Request, status
-from fastapi.security import APIKeyHeader, OAuth2AuthorizationCodeBearer
+from fastapi.security import APIKeyHeader  # OAuth2AuthorizationCodeBearer
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from openai import AsyncAzureOpenAI, AsyncOpenAI
 from pydantic import ValidationError
@@ -90,30 +93,33 @@ async def get_db_client() -> AsyncGenerator[AsyncIOMotorClient, None]:
 api_key_header = APIKeyHeader(name="x-api-key", auto_error=False)
 
 
-def get_oauth2_scheme(
-    settings: Settings = Depends(get_settings),
-) -> OAuth2AuthorizationCodeBearer:
-    """Get the OAuth2 scheme."""
-    return OAuth2AuthorizationCodeBearer(
-        authorizationUrl=settings.api.auth0.authorize_url,
-        tokenUrl=settings.api.auth0.token_url,
-        auto_error=False,
-    )
+###########################
+# Auth0 used for UI #######
+###########################
+# def get_oauth2_scheme(
+#     settings: Settings = Depends(get_settings),
+# ) -> OAuth2AuthorizationCodeBearer:
+#     """Get the OAuth2 scheme."""
+#     return OAuth2AuthorizationCodeBearer(
+#         authorizationUrl=settings.api.auth0.authorize_url,
+#         tokenUrl=settings.api.auth0.token_url,
+#         auto_error=False,
+#     )
 
 
-async def get_token_header(
-    request: Request,
-    oauth2_scheme: OAuth2AuthorizationCodeBearer = Depends(get_oauth2_scheme),
-) -> str | None:
-    """Get the OAuth2 token from the header."""
-    token = await oauth2_scheme(request)
-    return token
+# async def get_token_header(
+#     request: Request,
+#     oauth2_scheme: OAuth2AuthorizationCodeBearer = Depends(get_oauth2_scheme),
+# ) -> str | None:
+#     """Get the OAuth2 token from the header."""
+#     token = await oauth2_scheme(request)
+#     return token
 
 
 async def get_user(
     request: Request,
     api_key: str | None = Depends(api_key_header),
-    token: str | None = Depends(get_token_header),
+    # token: str | None = Depends(get_token_header),
     db: AsyncIOMotorDatabase = Depends(get_db),
     settings: Settings = Depends(get_settings),
 ) -> ObjectId | None:
@@ -128,73 +134,76 @@ async def get_user(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid API key",
             )
-    elif token is not None:
-        logger.info("Authenticating with OAuth2 token")
-        if (
-            settings.api.auth0.domain is None
-            or settings.api.auth0.audience is None
-            or settings.api.auth0.algorithm is None
-        ):
-            raise ValueError("Auth0 domain, audience, and algorithm required")
-        domain = settings.api.auth0.domain.get_secret_value()
-        audience = settings.api.auth0.audience.get_secret_value()
-        algorithm = settings.api.auth0.algorithm
+    ###########################
+    # Auth0 used for UI #######
+    ###########################
+    # elif token is not None:
+    #     logger.info("Authenticating with OAuth2 token")
+    #     if (
+    #         settings.api.auth0.domain is None
+    #         or settings.api.auth0.audience is None
+    #         or settings.api.auth0.algorithm is None
+    #     ):
+    #         raise ValueError("Auth0 domain, audience, and algorithm required")
+    #     domain = settings.api.auth0.domain.get_secret_value()
+    #     audience = settings.api.auth0.audience.get_secret_value()
+    #     algorithm = settings.api.auth0.algorithm
 
-        try:
-            signing_key = (
-                request.app.state.jwks_client.get_signing_key_from_jwt(
-                    token
-                ).key
-            )
+    #     try:
+    #         signing_key = (
+    #             request.app.state.jwks_client.get_signing_key_from_jwt(
+    #                 token
+    #             ).key
+    #         )
 
-            payload = jwt.decode(
-                token,
-                signing_key,
-                algorithms=[algorithm],
-                audience=audience,
-                issuer=f"https://{domain}/",
-            )
+    #         payload = jwt.decode(
+    #             token,
+    #             signing_key,
+    #             algorithms=[algorithm],
+    #             audience=audience,
+    #             issuer=f"https://{domain}/",
+    #         )
 
-            user_id = payload["sub"]
+    #         user_id = payload["sub"]
 
-            if user_id is None:
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Invalid token",
-                )
+    #         if user_id is None:
+    #             raise HTTPException(
+    #                 status_code=status.HTTP_401_UNAUTHORIZED,
+    #                 detail="Invalid token",
+    #             )
 
-            user_document = await db.user.find_one({"sub": user_id})
-            if user_document:
-                return ObjectId(user_document["_id"])
-            else:
-                raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="User not found",
-                )
-        except jwt.exceptions.PyJWKClientError as error:
-            logger.error(f"Failed to fetch JWKS: {error}")
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail=str(error),
-            )
-        except jwt.exceptions.DecodeError as error:
-            logger.error(f"Failed to decode token: {error}")
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail=str(error),
-            )
-        except requests.exceptions.Timeout as te:
-            logger.error(f"Request to Auth0 timed out: {te}")
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to authenticate",
-            )
-        except requests.RequestException as e:
-            logger.error(f"Failed to fetch user info: {e}")
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token",
-            )
+    #         user_document = await db.user.find_one({"sub": user_id})
+    #         if user_document:
+    #             return ObjectId(user_document["_id"])
+    #         else:
+    #             raise HTTPException(
+    #                 status_code=status.HTTP_401_UNAUTHORIZED,
+    #                 detail="User not found",
+    #             )
+    #     except jwt.exceptions.PyJWKClientError as error:
+    #         logger.error(f"Failed to fetch JWKS: {error}")
+    #         raise HTTPException(
+    #             status_code=status.HTTP_401_UNAUTHORIZED,
+    #             detail=str(error),
+    #         )
+    #     except jwt.exceptions.DecodeError as error:
+    #         logger.error(f"Failed to decode token: {error}")
+    #         raise HTTPException(
+    #             status_code=status.HTTP_401_UNAUTHORIZED,
+    #             detail=str(error),
+    #         )
+    #     except requests.exceptions.Timeout as te:
+    #         logger.error(f"Request to Auth0 timed out: {te}")
+    #         raise HTTPException(
+    #             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    #             detail="Failed to authenticate",
+    #         )
+    #     except requests.RequestException as e:
+    #         logger.error(f"Failed to fetch user info: {e}")
+    #         raise HTTPException(
+    #             status_code=status.HTTP_401_UNAUTHORIZED,
+    #             detail="Invalid token",
+    #         )
     else:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -249,7 +258,6 @@ async def get_llm_client(
             detail="LLM provider not found",
         )
     llm_provider = llm_providers[0]
-    print(llm_provider)
 
     if llm_provider.value == "byo-azure-openai":
         byo_aoai_metadata = BYOAzureOpenAIMetadata.model_validate(
@@ -312,44 +320,47 @@ async def get_llm_client(
         )
 
 
-async def get_auth0(
-    settings: Settings = Depends(get_settings),
-) -> Auth0:
-    """
-    Get an Auth0 management client.
+###########################
+# Auth0 used for UI #######
+###########################
+# async def get_auth0(
+#     settings: Settings = Depends(get_settings),
+# ) -> Auth0:
+#     """
+#     Get an Auth0 management client.
 
-    Parameters
-    ----------
-    settings : Settings
-        The settings.
+#     Parameters
+#     ----------
+#     settings : Settings
+#         The settings.
 
-    Returns
-    -------
-    Auth0
-        The Auth0 management client.
-    """
-    if settings.api.auth0.client_domain is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Auth0 domain is missing",
-        )
-    if settings.api.auth0.client_id is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Auth0 client ID is missing",
-        )
-    if settings.api.auth0.client_secret is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Auth0 client secret is missing",
-        )
-    domain = settings.api.auth0.client_domain.get_secret_value()
-    client_id = settings.api.auth0.client_id.get_secret_value()
-    client_secret = settings.api.auth0.client_secret.get_secret_value()
-    get_token = GetToken(domain, client_id, client_secret=client_secret)
-    token = get_token.client_credentials("https://{}/api/v2/".format(domain))
-    mgmt_api_token = token["access_token"]
-    return Auth0(domain, mgmt_api_token)
+#     Returns
+#     -------
+#     Auth0
+#         The Auth0 management client.
+#     """
+#     if settings.api.auth0.client_domain is None:
+#         raise HTTPException(
+#             status_code=status.HTTP_401_UNAUTHORIZED,
+#             detail="Auth0 domain is missing",
+#         )
+#     if settings.api.auth0.client_id is None:
+#         raise HTTPException(
+#             status_code=status.HTTP_401_UNAUTHORIZED,
+#             detail="Auth0 client ID is missing",
+#         )
+#     if settings.api.auth0.client_secret is None:
+#         raise HTTPException(
+#             status_code=status.HTTP_401_UNAUTHORIZED,
+#             detail="Auth0 client secret is missing",
+#         )
+#     domain = settings.api.auth0.client_domain.get_secret_value()
+#     client_id = settings.api.auth0.client_id.get_secret_value()
+#     client_secret = settings.api.auth0.client_secret.get_secret_value()
+#     get_token = GetToken(domain, client_id, client_secret=client_secret)
+#     token = get_token.client_credentials("https://{}/api/v2/".format(domain))
+#     mgmt_api_token = token["access_token"]
+#     return Auth0(domain, mgmt_api_token)
 
 
 async def valid_workspace_id(

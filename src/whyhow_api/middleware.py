@@ -4,10 +4,14 @@ import collections
 import logging
 from datetime import datetime, timezone
 
-import jwt
+###########################
+# Auth0 used for UI #######
+###########################
+# import jwt
 from fastapi import HTTPException, Request, status
 from fastapi.responses import JSONResponse
-from fastapi.security import OAuth2AuthorizationCodeBearer
+
+# from fastapi.security import OAuth2AuthorizationCodeBearer
 from starlette.middleware.base import (
     BaseHTTPMiddleware,
     RequestResponseEndpoint,
@@ -105,41 +109,44 @@ class RateLimiter(BaseHTTPMiddleware):
         """Get the rate limit key."""
         try:
             api_key = request.headers.get("x-api-key")
-            oauth2_scheme = OAuth2AuthorizationCodeBearer(
-                authorizationUrl=settings.api.auth0.authorize_url,
-                tokenUrl=settings.api.auth0.token_url,
-                auto_error=False,
-            )
-            token = await oauth2_scheme(request)
+            ###########################
+            # Auth0 used for UI #######
+            ###########################
+            # oauth2_scheme = OAuth2AuthorizationCodeBearer(
+            #     authorizationUrl=settings.api.auth0.authorize_url,
+            #     tokenUrl=settings.api.auth0.token_url,
+            #     auto_error=False,
+            # )
+            # token = await oauth2_scheme(request)
             if api_key:
                 return api_key
-            elif token:
-                if (
-                    settings.api.auth0.domain is None
-                    or settings.api.auth0.audience is None
-                    or settings.api.auth0.algorithm is None
-                ):
-                    raise ValueError(
-                        "Auth0 domain, audience, and algorithm required"
-                    )
-                domain = settings.api.auth0.domain.get_secret_value()
-                audience = settings.api.auth0.audience.get_secret_value()
-                algorithm = settings.api.auth0.algorithm
+            # elif token:
+            #     if (
+            #         settings.api.auth0.domain is None
+            #         or settings.api.auth0.audience is None
+            #         or settings.api.auth0.algorithm is None
+            #     ):
+            #         raise ValueError(
+            #             "Auth0 domain, audience, and algorithm required"
+            #         )
+            #     domain = settings.api.auth0.domain.get_secret_value()
+            #     audience = settings.api.auth0.audience.get_secret_value()
+            #     algorithm = settings.api.auth0.algorithm
 
-                signing_key = (
-                    request.app.state.jwks_client.get_signing_key_from_jwt(
-                        token
-                    ).key
-                )
+            #     signing_key = (
+            #         request.app.state.jwks_client.get_signing_key_from_jwt(
+            #             token
+            #         ).key
+            #     )
 
-                payload = jwt.decode(
-                    token,
-                    signing_key,
-                    algorithms=[algorithm],
-                    audience=audience,
-                    issuer=f"https://{domain}/",
-                )
-                return payload["sub"]
+            #     payload = jwt.decode(
+            #         token,
+            #         signing_key,
+            #         algorithms=[algorithm],
+            #         audience=audience,
+            #         issuer=f"https://{domain}/",
+            #     )
+            #     return payload["sub"]
             else:
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,

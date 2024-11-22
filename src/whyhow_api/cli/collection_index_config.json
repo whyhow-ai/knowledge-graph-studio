@@ -1,0 +1,277 @@
+{
+  "chunk": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      },
+      {
+        "name": "created_by",
+        "key": [["created_by", 1]]
+      },
+      {
+        "name": "created_by_1_data_type_1_workspaces_1",
+        "key": [
+          ["created_by", 1],
+          ["data_type", 1],
+          ["workspaces", 1]
+        ]
+      },
+      {
+        "name": "workspaces_1",
+        "key": [["workspaces", 1]]
+      },
+      {
+        "name": "created_by_1_document_1_workspaces_1_date_type_1",
+        "key": [
+          ["created_by", 1],
+          ["document", 1],
+          ["workspaces", 1],
+          ["date_type", 1]
+        ]
+      }
+    ],
+    "search_indexes": [
+      {
+        "name": "vector_search_index",
+        "type": "vectorSearch",
+        "fields": [
+          {
+            "numDimensions": 1536,
+            "path": "embedding",
+            "similarity": "cosine",
+            "type": "vector"
+          },
+          {
+            "path": "created_by",
+            "type": "filter"
+          },
+          {
+            "path": "workspaces",
+            "type": "filter"
+          },
+          {
+            "path": "data_type",
+            "type": "filter"
+          },
+          {
+            "path": "_id",
+            "type": "filter"
+          }
+        ]
+      }
+    ]
+  },
+  "document": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      }
+    ],
+    "search_indexes": []
+  },
+  "graph": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      },
+      {
+        "name": "name_1_created_by_1_workspace_1",
+        "key": [
+          ["name", 1],
+          ["created_by", 1],
+          ["workspace", 1]
+        ],
+        "unique": true
+      }
+    ],
+    "search_indexes": []
+  },
+  "node": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      },
+      {
+        "name": "graph_1",
+        "key": [["graph", 1]]
+      },
+      {
+        "name": "update_one_node_index",
+        "key": [
+          ["name", 1],
+          ["type", 1],
+          ["created_by", 1],
+          ["graph", 1]
+        ]
+      }
+    ],
+    "search_indexes": [
+      {
+        "name": "node_index",
+        "type": "search",
+        "fields": []
+      }
+    ]
+  },
+  "query": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      }
+    ],
+    "search_indexes": []
+  },
+  "rule": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      }
+    ],
+    "search_indexes": []
+  },
+  "schema": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      },
+      {
+        "name": "name_1_created_by_1_workspace_1",
+        "key": [
+          ["name", 1],
+          ["created_by", 1],
+          ["workspace", 1]
+        ],
+        "unique": true
+      }
+    ],
+    "search_indexes": []
+  },
+  "task": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      },
+      {
+        "name": "createdAt_-1",
+        "key": [["createdAt", -1]],
+        "expireAfterSeconds": 86400
+      }
+    ],
+    "search_indexes": []
+  },
+  "triple": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      },
+      {
+        "name": "graph_1",
+        "key": [["graph", 1]]
+      },
+      {
+        "name": "created_by_1_graph_1_head_node_1_tail_node_1_type_1_properties_1_chunks_1",
+        "key": [
+          ["created_by", 1],
+          ["graph", 1],
+          ["head_node", 1],
+          ["tail_node", 1],
+          ["type", 1],
+          ["properties", 1],
+          ["chunks", 1]
+        ]
+      },
+      {
+        "name": "update_one_triple_index",
+        "key": [
+          ["head_node", 1],
+          ["tail_node", 1],
+          ["created_by", 1],
+          ["graph", 1]
+        ]
+      },
+      {
+        "name": "chunks_1",
+        "key": [["chunks", 1]]
+      },
+      {
+        "name": "head_node_1",
+        "key": [["head_node", 1]]
+      },
+      {
+        "name": "tail_node_1",
+        "key": [["tail_node", 1]]
+      }
+    ],
+    "search_indexes": [
+      {
+        "name": "triple_index",
+        "type": "search",
+        "fields": []
+      },
+      {
+        "name": "triple_vector_index",
+        "type": "vectorSearch",
+        "fields": [
+          {
+            "numDimensions": 1024,
+            "path": "embedding",
+            "similarity": "cosine",
+            "type": "vector"
+          },
+          {
+            "path": "_id",
+            "type": "filter"
+          },
+          {
+            "path": "created_by",
+            "type": "filter"
+          },
+          {
+            "path": "graph",
+            "type": "filter"
+          }
+        ]
+      }
+    ]
+  },
+  "user": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      }
+    ],
+    "search_indexes": []
+  },
+  "workspace": {
+    "regular_indexes": [
+      {
+        "name": "_id_",
+        "key": [["_id", 1]]
+      },
+      {
+        "name": "created_by_index",
+        "key": [["created_by", 1]],
+        "background": false
+      },
+      {
+        "name": "name_1_created_by_1",
+        "key": [
+          ["name", 1],
+          ["created_by", 1]
+        ],
+        "unique": true
+      }
+    ],
+    "search_indexes": []
+  }
+}
