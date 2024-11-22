@@ -30,7 +30,7 @@ _This client requires Python version 3.10 or higher._
 
 ```shell
 $ git clone git@github.com:whyhow-ai/knowledge-graph-studio.git
-$ cd kg-engine
+$ cd knowledge-graph-studio
 $ pip install .
 ```
 
