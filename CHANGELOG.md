@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated demo video
 - Added screenshots + links
+- Updarted README with correct naming
 
 ### Added
 
