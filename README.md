@@ -121,7 +121,7 @@ $ pip install whyhow
 from whyhow import WhyHow, Triple, Node, Chunk, Relation
 
 # Configure WhyHow client
-client = WhyHow(api_key=os.getenv('<your whyhow api key>'), base_url="http://localhost:8000")
+client = WhyHow(api_key='<your whyhow api key>', base_url="http://localhost:8000")
 
 # Create workspace
 workspace = client.workspaces.create(name="Demo Workspace")
