@@ -311,7 +311,6 @@ class TextWithEntities(BaseModel):
             " text contains one or more entities that have been classified and"
             " extracted."
         ),
-        example="Python is a programming language that lets you work quickly and integrate systems more effectively.",  # type: ignore[call-arg]
     )
     entities: List[Entity] = Field(
         ...,
@@ -320,5 +319,4 @@ class TextWithEntities(BaseModel):
             " is represented as a combination of the entity's surface form and"
             " its classification label."
         ),
-        example=[{"text": "Python", "label": "Programming Language"}],  # type: ignore[call-arg]
     )

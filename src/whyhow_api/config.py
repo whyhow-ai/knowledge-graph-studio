@@ -72,51 +72,54 @@ class SettingsDev(BaseModel):
         return value
 
 
-class SettingsAuth0(BaseModel):
-    """Auth0 settings."""
+###########################
+# Auth0 used for UI
+###########################
+# class SettingsAuth0(BaseModel):
+#     """Auth0 settings."""
 
-    domain: SecretStr | None = None
-    audience: SecretStr | None = None  # api_identifier
-    algorithm: str | None = None
-    client_domain: SecretStr | None = None
-    client_id: SecretStr | None = None
-    client_secret: SecretStr | None = None
+#     domain: SecretStr | None = None
+#     audience: SecretStr | None = None  # api_identifier
+#     algorithm: str | None = None
+#     client_domain: SecretStr | None = None
+#     client_id: SecretStr | None = None
+#     client_secret: SecretStr | None = None
 
-    @property
-    def userinfo_url(self) -> str:
-        """Get the userinfo URL."""
-        if self.domain is None:
-            raise ValueError("domain must be supplied.")
-        return f"https://{self.domain.get_secret_value()}/userinfo"
+#     @property
+#     def userinfo_url(self) -> str:
+#         """Get the userinfo URL."""
+#         if self.domain is None:
+#             raise ValueError("domain must be supplied.")
+#         return f"https://{self.domain.get_secret_value()}/userinfo"
 
-    @property
-    def token_url(self) -> str:
-        """Get the token URL."""
-        if self.domain is None:
-            raise ValueError("domain must be supplied.")
-        return f"https://{self.domain.get_secret_value()}/oauth/token"
+#     @property
+#     def token_url(self) -> str:
+#         """Get the token URL."""
+#         if self.domain is None:
+#             raise ValueError("domain must be supplied.")
+#         return f"https://{self.domain.get_secret_value()}/oauth/token"
 
-    @property
-    def authorize_url(self) -> str:
-        """Get the authorize URL."""
-        if self.domain is None:
-            raise ValueError("domain must be supplied.")
-        return f"https://{self.domain.get_secret_value()}/authorize"
+#     @property
+#     def authorize_url(self) -> str:
+#         """Get the authorize URL."""
+#         if self.domain is None:
+#             raise ValueError("domain must be supplied.")
+#         return f"https://{self.domain.get_secret_value()}/authorize"
 
-    @property
-    def jwks_url(self) -> str:
-        """Get the JWKS URL."""
-        if self.domain is None:
-            raise ValueError("domain must be supplied.")
-        return (
-            f"https://{self.domain.get_secret_value()}/.well-known/jwks.json"
-        )
+#     @property
+#     def jwks_url(self) -> str:
+#         """Get the JWKS URL."""
+#         if self.domain is None:
+#             raise ValueError("domain must be supplied.")
+#         return (
+#             f"https://{self.domain.get_secret_value()}/.well-known/jwks.json"
+#         )
 
 
 class SettingsAPI(BaseModel):
     """API settings."""
 
-    auth0: SettingsAuth0 = SettingsAuth0()
+    # auth0: SettingsAuth0 = SettingsAuth0()
     limit_frequency_value: int = 30  # tokens added per second
     bucket_capacity: int = 45  # max tokens in bucket
     excluded_paths: list[str] = [
@@ -233,10 +236,10 @@ class SettingsMongoDB(BaseModel):
     password: SecretStr | None = None
     database_name: str | None = None
     host: str | None = None
-    public_key: SecretStr | None = None
-    private_key: SecretStr | None = None
-    group_id: str | None = None
-    cluster_name: str | None = None
+    # public_key: SecretStr | None = None
+    # private_key: SecretStr | None = None
+    # group_id: str | None = None
+    # cluster_name: str | None = None
     chunk_collection_name: str = "chunk"
     vector_search_embedding_size: int = 1536
 

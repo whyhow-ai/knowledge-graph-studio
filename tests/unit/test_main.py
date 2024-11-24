@@ -1,14 +1,14 @@
 import logging
 import uuid
 from time import sleep
-from unittest.mock import AsyncMock, Mock, patch
+from unittest.mock import AsyncMock, Mock  # patch
 
 import jwt
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from whyhow_api.config import Settings, SettingsAPI, SettingsAuth0
+from whyhow_api.config import Settings, SettingsAPI  # SettingsAuth0
 from whyhow_api.dependencies import get_db, get_settings
 from whyhow_api.middleware import RateLimiter
 
@@ -123,11 +123,11 @@ def test_lifespan(client, monkeypatch, log_level, caplog):
     client.app.dependency_overrides[get_settings] = lambda: Settings(
         dev={"log_level": log_level},
         mongodb={"username": "test", "password": "test", "host": "test"},
-        api={
-            "auth0": {
-                "domain": "test",
-            }
-        },
+        # api={
+        #     "auth0": {
+        #         "domain": "test",
+        #     }
+        # },
     )
 
     fake_connect_to_mongo = Mock()
@@ -173,11 +173,11 @@ test_settings = Settings(
         limit_frequency_value=1,  # tokens added per second
         bucket_capacity=1,  # max tokens in bucket
         excluded_paths=["/"],
-        auth0=SettingsAuth0(
-            domain="test-domain",
-            audience="test-audience",
-            algorithm="test-algorithm",
-        ),
+        # auth0=SettingsAuth0(
+        #     domain="test-domain",
+        #     audience="test-audience",
+        #     algorithm="test-algorithm",
+        # ),
     ),
 )
 
@@ -189,112 +189,112 @@ def create_mock_jwt():
     return token
 
 
-def test_rate_limit_bearer_token(monkeypatch):
-    test_app = FastAPI()
-    test_app.add_middleware(RateLimiter)
+# def test_rate_limit_bearer_token(monkeypatch):
+#     test_app = FastAPI()
+#     test_app.add_middleware(RateLimiter)
 
-    @test_app.get("/test")
-    def mock_endpoint():
-        return {"message": "Hello World"}
+#     @test_app.get("/test")
+#     def mock_endpoint():
+#         return {"message": "Hello World"}
 
-    test_client = TestClient(test_app)
+#     test_client = TestClient(test_app)
 
-    monkeypatch.setattr(
-        "whyhow_api.middleware.get_settings",
-        lambda: test_settings,
-    )
+#     monkeypatch.setattr(
+#         "whyhow_api.middleware.get_settings",
+#         lambda: test_settings,
+#     )
 
-    # Create and use the mock JWT token
-    mock_token = create_mock_jwt()
-    mock_oauth2 = AsyncMock(return_value=mock_token)
-    monkeypatch.setattr(
-        "whyhow_api.middleware.OAuth2AuthorizationCodeBearer.__call__",
-        mock_oauth2,
-    )
+#     # Create and use the mock JWT token
+#     mock_token = create_mock_jwt()
+#     mock_oauth2 = AsyncMock(return_value=mock_token)
+#     monkeypatch.setattr(
+#         "whyhow_api.middleware.OAuth2AuthorizationCodeBearer.__call__",
+#         mock_oauth2,
+#     )
 
-    mock_jwks_client = Mock()
-    mock_jwks_client.get_signing_key_from_jwt.return_value.key = "mock_key"
+#     mock_jwks_client = Mock()
+#     mock_jwks_client.get_signing_key_from_jwt.return_value.key = "mock_key"
 
-    # Create a mock request state
-    mock_state = Mock()
-    mock_state.jwks_client = mock_jwks_client
+#     # Create a mock request state
+#     mock_state = Mock()
+#     mock_state.jwks_client = mock_jwks_client
 
-    # Patch the request to include the mocked app.state
-    with patch("fastapi.Request.app", new_callable=Mock) as mock_app:
-        mock_app.state = mock_state
+#     # Patch the request to include the mocked app.state
+#     with patch("fastapi.Request.app", new_callable=Mock) as mock_app:
+#         mock_app.state = mock_state
 
-        monkeypatch.setattr(
-            "whyhow_api.middleware.jwt.decode",
-            lambda token, key, algorithms, audience, issuer: {
-                "sub": "user123"
-            },
-        )
+#         monkeypatch.setattr(
+#             "whyhow_api.middleware.jwt.decode",
+#             lambda token, key, algorithms, audience, issuer: {
+#                 "sub": "user123"
+#             },
+#         )
 
-        headers = {"Authorization": f"Bearer {mock_token}"}
+#         headers = {"Authorization": f"Bearer {mock_token}"}
 
-        # Send a request which should pass
-        response = test_client.get("/test", headers=headers)
-        assert (
-            response.status_code == 200
-        ), f"Expected 200, got {response.status_code}"
-        print(response.json())
+#         # Send a request which should pass
+#         response = test_client.get("/test", headers=headers)
+#         assert (
+#             response.status_code == 200
+#         ), f"Expected 200, got {response.status_code}"
+#         print(response.json())
 
-        # Immediately send another request which should be rate limited
-        response = test_client.get("/test", headers=headers)
-        assert (
-            response.status_code == 429
-        ), f"Expected 429, got {response.status_code}"
+#         # Immediately send another request which should be rate limited
+#         response = test_client.get("/test", headers=headers)
+#         assert (
+#             response.status_code == 429
+#         ), f"Expected 429, got {response.status_code}"
 
-        # Wait for 1 second to reset the rate limit
-        sleep(1)
+#         # Wait for 1 second to reset the rate limit
+#         sleep(1)
 
-        # After a pause, another request should succeed
-        response = test_client.get("/test", headers=headers)
-        assert (
-            response.status_code == 200
-        ), f"Expected 200, got {response.status_code}"
+#         # After a pause, another request should succeed
+#         response = test_client.get("/test", headers=headers)
+#         assert (
+#             response.status_code == 200
+#         ), f"Expected 200, got {response.status_code}"
 
 
-def test_rate_limit_bearer_token_jwks_client_exception(monkeypatch):
-    test_app = FastAPI()
-    test_app.add_middleware(RateLimiter)
+# def test_rate_limit_bearer_token_jwks_client_exception(monkeypatch):
+#     test_app = FastAPI()
+#     test_app.add_middleware(RateLimiter)
 
-    @test_app.get("/test")
-    def mock_endpoint():
-        return {"message": "Hello World"}
+#     @test_app.get("/test")
+#     def mock_endpoint():
+#         return {"message": "Hello World"}
 
-    test_client = TestClient(test_app)
+#     test_client = TestClient(test_app)
 
-    monkeypatch.setattr(
-        "whyhow_api.middleware.get_settings",
-        lambda: test_settings,
-    )
+#     monkeypatch.setattr(
+#         "whyhow_api.middleware.get_settings",
+#         lambda: test_settings,
+#     )
 
-    # Create and use the mock JWT token
-    mock_token = create_mock_jwt()
-    mock_oauth2 = AsyncMock(return_value=mock_token)
-    monkeypatch.setattr(
-        "whyhow_api.middleware.OAuth2AuthorizationCodeBearer.__call__",
-        mock_oauth2,
-    )
+#     # Create and use the mock JWT token
+#     mock_token = create_mock_jwt()
+#     mock_oauth2 = AsyncMock(return_value=mock_token)
+#     monkeypatch.setattr(
+#         "whyhow_api.middleware.OAuth2AuthorizationCodeBearer.__call__",
+#         mock_oauth2,
+#     )
 
-    mock_jwks_client = Mock(raise_exception=Exception("JWKS Client Exception"))
-    monkeypatch.setattr(
-        "whyhow_api.middleware.jwt.PyJWKClient", lambda url: mock_jwks_client
-    )
+#     mock_jwks_client = Mock(raise_exception=Exception("JWKS Client Exception"))
+#     monkeypatch.setattr(
+#         "whyhow_api.middleware.jwt.PyJWKClient", lambda url: mock_jwks_client
+#     )
 
-    headers = {"Authorization": f"Bearer {mock_token}"}
+#     headers = {"Authorization": f"Bearer {mock_token}"}
 
-    with pytest.raises(Exception) as exc_info:
-        # Send a request which should pass
-        response = test_client.get("/test", headers=headers)
-        assert (
-            response.status_code == 401
-        ), f"Expected 401, got {response.status_code}"
-    assert (
-        "unable to authorize" in exc_info.value.detail.lower()
-    ), 'Expected "Unable to authorize" in exception message'
-    assert 401 == exc_info.value.status_code, "Expected 401 status code"
+#     with pytest.raises(Exception) as exc_info:
+#         # Send a request which should pass
+#         response = test_client.get("/test", headers=headers)
+#         assert (
+#             response.status_code == 401
+#         ), f"Expected 401, got {response.status_code}"
+#     assert (
+#         "unable to authorize" in exc_info.value.detail.lower()
+#     ), 'Expected "Unable to authorize" in exception message'
+#     assert 401 == exc_info.value.status_code, "Expected 401 status code"
 
 
 def test_rate_limit_api_key(monkeypatch):

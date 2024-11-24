@@ -63,6 +63,7 @@ class AsyncContextManagerMock(AsyncMock):
         pass
 
 
+@pytest.mark.skip(reason="Disabling Auth0 tests")
 @pytest.mark.asyncio
 async def test_delete_existed_user(monkeypatch):
     db = MagicMock()

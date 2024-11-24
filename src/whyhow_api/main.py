@@ -7,7 +7,10 @@ from logging import basicConfig
 from pathlib import Path
 from typing import Annotated, Any
 
-import jwt
+###########################
+# Auth0 used for UI #######
+###########################
+# import jwt
 import logfire
 from asgi_correlation_id import CorrelationIdMiddleware
 from asgi_correlation_id.context import correlation_id
@@ -49,9 +52,12 @@ async def lifespan(app: FastAPI):  # type: ignore
     # Load settings
     settings = app.dependency_overrides.get(get_settings, get_settings)()
 
+    ###########################
+    # Auth0 used for UI #######
+    ###########################
     # Set up jwks_client
-    jwks_url = settings.api.auth0.jwks_url
-    app.state.jwks_client = jwt.PyJWKClient(jwks_url)
+    # jwks_url = settings.api.auth0.jwks_url
+    # app.state.jwks_client = jwt.PyJWKClient(jwks_url)
 
     # Configure logging
     configure_logging(project_log_level=settings.dev.log_level)

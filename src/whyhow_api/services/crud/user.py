@@ -3,7 +3,10 @@
 import logging
 import secrets
 
-from auth0.management import Auth0
+###########################
+# Auth0 used for UI #######
+###########################
+# from auth0.management import Auth0
 from bson import ObjectId
 from motor.motor_asyncio import AsyncIOMotorDatabase
 
@@ -31,7 +34,9 @@ async def get_user(
 
 
 async def delete_user(
-    db: AsyncIOMotorDatabase, user_id: ObjectId, auth0: Auth0
+    db: AsyncIOMotorDatabase,
+    user_id: ObjectId,
+    # auth0: Auth0
 ) -> None:
     """Delete a user."""
     async with await db.client.start_session() as session:
@@ -67,14 +72,17 @@ async def delete_user(
                 {"created_by": user_id}, session=session
             )
 
+            ###########################
+            # Auth0 used for UI #######
+            ###########################
             # Delete the auth0 user
-            user = await db.user.find_one(
-                {"_id": user_id}, {"sub": 1}, session=session
-            )
-            if user is None:
-                raise ValueError(f"User '{user_id}' not found")
-            sub = user.get("sub")
-            auth0.users.delete(sub)
+            # user = await db.user.find_one(
+            #     {"_id": user_id}, {"sub": 1}, session=session
+            # )
+            # if user is None:
+            #     raise ValueError(f"User '{user_id}' not found")
+            # sub = user.get("sub")
+            # auth0.users.delete(sub)
 
             # Delete the user
             await db.user.delete_one({"_id": user_id}, session=session)

@@ -1,15 +1,15 @@
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
-from auth0.management import Auth0
+
+# from auth0.management import Auth0
 from bson import ObjectId
 from fastapi import HTTPException, Security, status
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from openai import AsyncAzureOpenAI, AsyncOpenAI
 
-from whyhow_api.dependencies import (
+from whyhow_api.dependencies import (  # get_auth0,
     api_key_header,
-    get_auth0,
     get_db,
     get_db_client,
     get_llm_client,
@@ -209,7 +209,10 @@ class TestGetUser:
 
         with pytest.raises(HTTPException) as exc_info:
             await get_user(
-                request=mock_request, api_key=None, token=None, db=db_mock
+                request=mock_request,
+                api_key=None,
+                # token=None,
+                db=db_mock,
             )
 
         # Check that the appropriate HTTPException is raised
@@ -933,55 +936,56 @@ class TestGetLLMClient:
             )
 
 
-@pytest.mark.asyncio
-class TestGetAuth0:
+# @pytest.mark.skip(reason="Disabling Auth0 tests")
+# @pytest.mark.asyncio
+# class TestGetAuth0:
 
-    @pytest.fixture
-    def mock_settings(self):
-        """Fixture to mock settings access."""
-        settings = MagicMock()
-        settings.api.auth0.client_domain = MagicMock()
-        settings.api.auth0.client_id = MagicMock()
-        settings.api.auth0.client_secret = MagicMock()
-        return settings
+#     @pytest.fixture
+#     def mock_settings(self):
+#         """Fixture to mock settings access."""
+#         settings = MagicMock()
+#         settings.api.auth0.client_domain = MagicMock()
+#         settings.api.auth0.client_id = MagicMock()
+#         settings.api.auth0.client_secret = MagicMock()
+#         return settings
 
-    @patch("whyhow_api.dependencies.GetToken")
-    async def test_get_auth0_success(self, mock_get_token, mock_settings):
-        """Test successful Auth0 client retrieval."""
-        # Mocking the behavior of GetToken and token retrieval
-        mock_token_instance = MagicMock()
-        mock_get_token.return_value = mock_token_instance
-        mock_token_instance.client_credentials.return_value = {
-            "access_token": "mocked_token"
-        }
+#     @patch("whyhow_api.dependencies.GetToken")
+#     async def test_get_auth0_success(self, mock_get_token, mock_settings):
+#         """Test successful Auth0 client retrieval."""
+#         # Mocking the behavior of GetToken and token retrieval
+#         mock_token_instance = MagicMock()
+#         mock_get_token.return_value = mock_token_instance
+#         mock_token_instance.client_credentials.return_value = {
+#             "access_token": "mocked_token"
+#         }
 
-        auth0_client = await get_auth0(settings=mock_settings)
+#         auth0_client = await get_auth0(settings=mock_settings)
 
-        assert isinstance(auth0_client, Auth0)
+#         assert isinstance(auth0_client, Auth0)
 
-    async def test_get_auth0_missing_domain(self, mock_settings):
-        """Test failure due to missing Auth0 client domain."""
-        mock_settings.api.auth0.client_domain = None
+#     async def test_get_auth0_missing_domain(self, mock_settings):
+#         """Test failure due to missing Auth0 client domain."""
+#         mock_settings.api.auth0.client_domain = None
 
-        with pytest.raises(HTTPException) as excinfo:
-            await get_auth0(settings=mock_settings)
-        assert excinfo.value.status_code == status.HTTP_401_UNAUTHORIZED
-        assert "Auth0 domain is missing" in str(excinfo.value.detail)
+#         with pytest.raises(HTTPException) as excinfo:
+#             await get_auth0(settings=mock_settings)
+#         assert excinfo.value.status_code == status.HTTP_401_UNAUTHORIZED
+#         assert "Auth0 domain is missing" in str(excinfo.value.detail)
 
-    async def test_get_auth0_missing_client_id(self, mock_settings):
-        """Test failure due to missing Auth0 client ID."""
-        mock_settings.api.auth0.client_id = None
+#     async def test_get_auth0_missing_client_id(self, mock_settings):
+#         """Test failure due to missing Auth0 client ID."""
+#         mock_settings.api.auth0.client_id = None
 
-        with pytest.raises(HTTPException) as excinfo:
-            await get_auth0(settings=mock_settings)
-        assert excinfo.value.status_code == status.HTTP_401_UNAUTHORIZED
-        assert "Auth0 client ID is missing" in str(excinfo.value.detail)
+#         with pytest.raises(HTTPException) as excinfo:
+#             await get_auth0(settings=mock_settings)
+#         assert excinfo.value.status_code == status.HTTP_401_UNAUTHORIZED
+#         assert "Auth0 client ID is missing" in str(excinfo.value.detail)
 
-    async def test_get_auth0_missing_client_secret(self, mock_settings):
-        """Test failure due to missing Auth0 client secret."""
-        mock_settings.api.auth0.client_secret = None
+#     async def test_get_auth0_missing_client_secret(self, mock_settings):
+#         """Test failure due to missing Auth0 client secret."""
+#         mock_settings.api.auth0.client_secret = None
 
-        with pytest.raises(HTTPException) as excinfo:
-            await get_auth0(settings=mock_settings)
-        assert excinfo.value.status_code == status.HTTP_401_UNAUTHORIZED
-        assert "Auth0 client secret is missing" in str(excinfo.value.detail)
+#         with pytest.raises(HTTPException) as excinfo:
+#             await get_auth0(settings=mock_settings)
+#         assert excinfo.value.status_code == status.HTTP_401_UNAUTHORIZED
+#         assert "Auth0 client secret is missing" in str(excinfo.value.detail)

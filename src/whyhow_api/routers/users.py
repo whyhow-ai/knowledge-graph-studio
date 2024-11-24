@@ -3,12 +3,15 @@
 import logging
 import re
 
-from auth0.management import Auth0
+###########################
+# Auth0 used for UI #######
+###########################
+# from auth0.management import Auth0
 from bson import ObjectId
 from fastapi import APIRouter, Depends, HTTPException
 from motor.motor_asyncio import AsyncIOMotorDatabase
 
-from whyhow_api.dependencies import get_auth0, get_db, get_user
+from whyhow_api.dependencies import get_db, get_user  # get_auth0,
 from whyhow_api.schemas.users import (
     APIKeyOutModel,
     DeleteUserResponse,
@@ -188,10 +191,14 @@ async def get_providers_details(
 async def delete_user(
     db: AsyncIOMotorDatabase = Depends(get_db),
     user_id: ObjectId = Depends(get_user),
-    auth0: Auth0 = Depends(get_auth0),
+    # auth0: Auth0 = Depends(get_auth0),
 ) -> DeleteUserResponse:
     """Delete user."""
-    await user.delete_user(db=db, user_id=user_id, auth0=auth0)
+    await user.delete_user(
+        db=db,
+        user_id=user_id,
+        # auth0=auth0
+    )
     return DeleteUserResponse(
         message="User deleted successfully",
         status="success",
