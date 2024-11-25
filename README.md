@@ -37,9 +37,9 @@ you need to install development and documentation dependencies.
 $ pip install -e .[dev,docs]
 ```
 
-# Setup
+# Quickstart
 
-### Pre-requisites
+### 1. Pre-requisites
 
 In order to get started with the WhyHow API with this quickstart, you will need the following:
 
@@ -47,7 +47,7 @@ In order to get started with the WhyHow API with this quickstart, you will need 
 - MongoDB account
   - _You must create a project and cluster in MongoDB Atlas_
 
-### Configuration
+### 2. Configuration
 
 **Environment Variables**
 Copy the `.env.example` file to `.env` and update the values per your environment. To get started with this version, you need to provide values for `mongodb`, `openai`.
@@ -80,6 +80,9 @@ This script will create 11 collections: `chunk`, `document`, `graph`, `node`, `q
 
 **Create User**
 
+> [!Important]
+> Once you create the user below, **copy the API Key** as you will need this to communicate with the backend via the SDK.
+
 Once the collections have been configured, you must create a user and an API key. We have included a cli script for this as well. To create the user, run the following from `src/whyhow_api/cli/`:
 
 ```shell
@@ -90,7 +93,7 @@ $ python admin.py create-user --email <your email address> --openai-key <your op
 
 Once the user creation completes successfully, you should see a message that includes your email address and WhyHow API key. You should copy this key and use this to configure the SDK.
 
-### Launching the API
+### 3. Launching the API
 
 One the configuration is complete, you can start the API server by running the following:
 
@@ -107,7 +110,7 @@ $ uvicorn $(whyhow-locate)
 
 You can then navigate to `http://localhost:8000/docs` to see the Swagger UI.
 
-### Test Locally
+### 4. Test Locally
 
 **Install Python SDK**
 
@@ -116,6 +119,10 @@ $ pip install whyhow
 ```
 
 **Configure and run**
+
+> [!Important]
+> Configure your WhyHow client using the API Key you created in **step 2**.
+
 
 ```shell
 from whyhow import WhyHow, Triple, Node, Chunk, Relation
@@ -168,9 +175,9 @@ query = client.graphs.query_unstructured(
 )
 ```
 
-# Docker
+# _Docker_
 
-You can also run the server using Docker.
+You can also run the server using Docker. Once you have completed steps 1 and 2 of the Quickstart, you can build and run the Knowlwedge Graph Studio backend using Docker. 
 
 ### Building the image
 
