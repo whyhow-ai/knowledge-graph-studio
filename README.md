@@ -6,7 +6,11 @@ This platform is built on top of a NoSQL database. NoSQL data stores like MongoD
 
 We are aiming to be database agnostic and also working with a number of other partners to bring similar capabilities to other relational and graph databases.
 
-Check out our case studies and articles on the [WhyHow Blog](https://medium.com/enterprise-rag). (_Here's a link to the [open sourcing announcement](https://medium.com/enterprise-rag/open-sourcing-the-whyhow-knowledge-graph-studio-powered-by-nosql-edce283fb341)._)
+Check out our case studies and articles on the [WhyHow Blog](https://medium.com/enterprise-rag). (_Here's a link to the [open sourcing announcement](https://medium.com/enterprise-rag/open-sourcing-the-whyhow-knowledge-graph-studio-powered-by-nosql-edce283fb341)._) 
+
+With this Repo, you can now generate your own API keys (see below). Knowledge Graph Studio API documentation: https://whyhow-ai.github.io/whyhow-sdk-docs/api/
+
+Discord link: https://discord.gg/derhh9Z6eu
 
 ![os-dashboard](https://github.com/user-attachments/assets/07d7926f-547f-41b1-a9e7-e9ec31590478)
 
