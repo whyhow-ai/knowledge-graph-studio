@@ -37,7 +37,7 @@ class MongoDBConnection:
             raise ConnectionError("Failed to connect to MongoDB client.")
         self.db = self.client.get_database(
             self.settings.mongodb.database_name
-        )  # Ensure 'debug' database is selected
+        )
         return self.db
 
     def __exit__(
