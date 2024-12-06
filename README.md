@@ -47,7 +47,7 @@ In order to get started with the WhyHow API with this quickstart, you will need 
 
 - OpenAI API key
 - MongoDB account
-  - _You must create a project and cluster in MongoDB Atlas_
+  - _You must create a project and cluster in MongoDB Atlas (dedicated M10+ recommended for best performance)_
 
 ### 2. Configuration
 
@@ -125,7 +125,6 @@ $ pip install whyhow
 > [!Important]
 > Configure your WhyHow client using the API Key you created in **step 2**.
 
-
 ```shell
 from whyhow import WhyHow, Triple, Node, Chunk, Relation
 
@@ -179,7 +178,7 @@ query = client.graphs.query_unstructured(
 
 # _Docker_
 
-You can also run the server using Docker. Once you have completed steps 1 and 2 of the Quickstart, you can build and run the Knowlwedge Graph Studio backend using Docker. 
+You can also run the server using Docker. Once you have completed steps 1 and 2 of the Quickstart, you can build and run the Knowlwedge Graph Studio backend using Docker.
 
 ### Building the image
 
