@@ -35,9 +35,7 @@ class MongoDBConnection:
         self.client = get_client()  # type: ignore[assignment]
         if self.client is None:
             raise ConnectionError("Failed to connect to MongoDB client.")
-        self.db = self.client.get_database(
-            self.settings.mongodb.database_name
-        )
+        self.db = self.client.get_database(self.settings.mongodb.database_name)
         return self.db
 
     def __exit__(
