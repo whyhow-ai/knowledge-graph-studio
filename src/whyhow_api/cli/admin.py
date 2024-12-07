@@ -92,10 +92,10 @@ async def setup_collections_and_indexes(
         for search_index in details.get("search_indexes", []):
             try:
                 if search_index["type"] == "search":
-                    # For Atlas Search indexes
+                    # Search indexes
                     definition = {
                         "mappings": {
-                            "dynamic": True  # Changed to True since fields array is empty
+                            "dynamic": True
                         }
                     }
                     await db[collection_name].create_search_index(
@@ -105,7 +105,7 @@ async def setup_collections_and_indexes(
                         }
                     )
                 elif search_index["type"] == "vectorSearch":
-                    # For Vector Search indexes
+                    # Vector Search indexes
                     search_index_model = SearchIndexModel(
                         definition={"fields": search_index["fields"]},
                         name=search_index["name"],
