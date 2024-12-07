@@ -93,11 +93,7 @@ async def setup_collections_and_indexes(
             try:
                 if search_index["type"] == "search":
                     # Search indexes
-                    definition = {
-                        "mappings": {
-                            "dynamic": True
-                        }
-                    }
+                    definition = {"mappings": {"dynamic": True}}
                     await db[collection_name].create_search_index(
                         {
                             "name": search_index["name"],
