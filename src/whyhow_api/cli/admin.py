@@ -9,6 +9,7 @@ from typing import Optional, Type
 
 import typer
 from motor.motor_asyncio import AsyncIOMotorDatabase
+from pymongo.operations import SearchIndexModel
 
 from whyhow_api.config import Settings
 from whyhow_api.database import (
@@ -34,9 +35,7 @@ class MongoDBConnection:
         self.client = get_client()  # type: ignore[assignment]
         if self.client is None:
             raise ConnectionError("Failed to connect to MongoDB client.")
-        self.db = self.client.get_database(
-            "main"
-        )  # Ensure 'main' database is selected
+        self.db = self.client.get_database(self.settings.mongodb.database_name)
         return self.db
 
     def __exit__(
@@ -75,7 +74,12 @@ async def setup_collections_and_indexes(
         for index in details.get("regular_indexes", []):
             try:
                 key = [(field, direction) for field, direction in index["key"]]
-                await db[collection_name].create_index(key, name=index["name"])
+                index_options = {
+                    k: v for k, v in index.items() if k not in ["key", "name"]
+                }
+                await db[collection_name].create_index(
+                    key, name=index["name"], **index_options
+                )
                 print(
                     f"Created regular index '{index['name']}' on collection '{collection_name}'."
                 )
@@ -87,22 +91,32 @@ async def setup_collections_and_indexes(
         # Create search indexes
         for search_index in details.get("search_indexes", []):
             try:
-                # Build the search index definition
-                definition = {
-                    "mappings": {
-                        "dynamic": False,
-                        "fields": search_index["fields"],
-                    }
-                }
-                await db[collection_name].create_search_index(
-                    {"name": search_index["name"], "definition": definition}
-                )
+                if search_index["type"] == "search":
+                    # Search indexes
+                    definition = {"mappings": {"dynamic": True}}
+                    await db[collection_name].create_search_index(
+                        {
+                            "name": search_index["name"],
+                            "definition": definition,
+                        }
+                    )
+                elif search_index["type"] == "vectorSearch":
+                    # Vector Search indexes
+                    search_index_model = SearchIndexModel(
+                        definition={"fields": search_index["fields"]},
+                        name=search_index["name"],
+                        type="vectorSearch",
+                    )
+                    await db[collection_name].create_search_index(
+                        model=search_index_model
+                    )
+
                 print(
-                    f"Created search index '{search_index['name']}' on collection '{collection_name}'."
+                    f"Created {search_index['type']} index '{search_index['name']}' on collection '{collection_name}'."
                 )
             except Exception as e:
                 print(
-                    f"Failed to create search index '{search_index['name']}' on collection '{collection_name}': {e}"
+                    f"Failed to create search index '{search_index['name']}' on collection '{collection_name}': {str(e)}"
                 )
 
 
