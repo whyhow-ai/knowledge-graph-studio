@@ -134,7 +134,7 @@ async def read_chunk_endpoint(
         filters={"_id": chunk.id},
     )
 
-    if len(chunks) == 0 or chunks is None:
+    if not chunks:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Chunk not found."
         )
