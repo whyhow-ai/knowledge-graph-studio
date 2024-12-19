@@ -8,7 +8,9 @@ We are aiming to be database agnostic and also working with a number of other pa
 
 Check out our case studies and articles on the [WhyHow Blog](https://medium.com/enterprise-rag). (_Here's a link to the [open sourcing announcement](https://medium.com/enterprise-rag/open-sourcing-the-whyhow-knowledge-graph-studio-powered-by-nosql-edce283fb341)._)
 
-We also have a parallel open-source triple creation tool, [Knowledge Table](https://github.com/whyhow-ai/knowledge-table) to check out
+We also have a parallel open-source triple creation tool, [Knowledge Table](https://github.com/whyhow-ai/knowledge-table) to check out.
+
+We have a cloud-hosted version of the Knowledge Graph Studio (with a UI) on our [Website](https://www.whyhow.ai/knowledge-graph-studio).
 
 ![os-dashboard](https://github.com/user-attachments/assets/07d7926f-547f-41b1-a9e7-e9ec31590478)
 
