@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed index creation script
 - Added Knowedge Table link to README
+- Added hosted version link to README
 - Fixed naming in README
 
 ### Added
